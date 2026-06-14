@@ -1,0 +1,354 @@
+[
+  {
+    "id": 1,
+    "type": "mcq",
+    "question": "Which type of crime is conducted in the real world but scaled/facilitated using computers?",
+    "options": ["Computer-facilitated crime", "Computer-based crime", "Digital infrastructure crime", "Network neutrality offense"],
+    "answer": "Computer-facilitated crime",
+    "explanation": "Computer-facilitated crimes happen in the physical world but use computers as tools to scale or assist them (e.g., online fraud, child exploitation). They differ from computer-based crimes which exist entirely in the digital realm."
+  },
+  {
+    "id": 2,
+    "type": "mcq",
+    "question": "Which type of crime is conducted purely inside computers, such as cyberbullying, spam, or logic bombs?",
+    "options": ["Computer-based crime", "Computer-facilitated crime", "Physical network intrusion", "Traditional criminal activity"],
+    "answer": "Computer-based crime",
+    "explanation": "Computer-based crimes exist only within the digital environment — they couldn't happen without computers. Examples include writing malware, deploying logic bombs, or sending spam."
+  },
+  {
+    "id": 3,
+    "type": "mcq",
+    "question": "The ability of an organization to maximize its potential to use digital evidence while minimizing the costs of an investigation is known as:",
+    "options": ["Forensic Readiness", "Chain of Custody", "Cross-Drive Analysis", "Incident Response Isolation"],
+    "answer": "Forensic Readiness",
+    "explanation": "Forensic Readiness is a proactive organizational strategy that prepares systems and processes in advance so that digital evidence can be gathered efficiently and cost-effectively when needed."
+  },
+  {
+    "id": 4,
+    "type": "mcq",
+    "question": "Preservation of the Chain of Custody is primarily accomplished by which of the following?",
+    "options": ["Verifiable documentation of who handled evidence and when", "Encrypting the source hard drive immediately", "Running anti-forensics tools", "Modifying file timestamps"],
+    "answer": "Verifiable documentation of who handled evidence and when",
+    "explanation": "Chain of Custody requires a documented, unbroken record of every person who accessed or handled evidence, along with timestamps. This ensures the evidence's integrity and admissibility in court."
+  },
+  {
+    "id": 5,
+    "type": "tf",
+    "question": "Digital evidence obtained without proper permission/authorization is generally admissible by courts.",
+    "options": ["True", "False"],
+    "answer": "False",
+    "explanation": "Illegally or improperly obtained digital evidence is typically inadmissible due to 4th Amendment protections (in the US) and similar laws worldwide. Proper warrants or authorization are mandatory for court admissibility."
+  },
+  {
+    "id": 6,
+    "type": "tf",
+    "question": "Digital evidence must adhere strictly to the rules of the Best Evidence Rule.",
+    "options": ["True", "False"],
+    "answer": "True",
+    "explanation": "The Best Evidence Rule requires that the original or most reliable form of evidence be presented in court. For digital forensics, this means maintaining verified, unaltered copies of original evidence."
+  },
+  {
+    "id": 7,
+    "type": "tf",
+    "question": "The ultimate aim of a digital forensic investigation is not just to find a culprit, but to provide credible answers to questions.",
+    "options": ["True", "False"],
+    "answer": "True",
+    "explanation": "Digital forensics is about discovering the truth and presenting it credibly, whether that confirms guilt, establishes innocence, or clarifies what happened — not simply about prosecution."
+  },
+  {
+    "id": 8,
+    "type": "mcq",
+    "question": "EFS stands for which of the following in Windows File Systems?",
+    "options": ["Encrypting File System", "Encrypting Filing System", "Electronic File System", "Electronic File Security"],
+    "answer": "Encrypting File System",
+    "explanation": "EFS (Encrypting File System) is a built-in Windows NTFS feature that allows files and folders to be encrypted transparently, protecting data from unauthorized access even if the drive is removed."
+  },
+  {
+    "id": 9,
+    "type": "tf",
+    "question": "The purpose of a Bootloader is to load the initial kernel and supporting modules into memory.",
+    "options": ["True", "False"],
+    "answer": "True",
+    "explanation": "A bootloader is the first program that runs when a computer starts. Its job is to initialize hardware and load the operating system kernel into RAM so the OS can take over."
+  },
+  {
+    "id": 10,
+    "type": "mcq",
+    "question": "Which process refers to writing the sectors that will make up the partition table on a disk?",
+    "options": ["Partitioning", "Formatting", "File Carving", "Bootstrapping"],
+    "answer": "Partitioning",
+    "explanation": "Partitioning divides a physical disk into logical sections by writing a partition table (MBR or GPT). Formatting, by contrast, prepares a partition with a file system."
+  },
+  {
+    "id": 11,
+    "type": "mcq",
+    "question": "What is the logical term for all data located on the same track across different physical platters of an HDD?",
+    "options": ["Cylinder", "Sector", "Slack space", "Cluster"],
+    "answer": "Cylinder",
+    "explanation": "A cylinder is the set of all tracks at the same position across all platters of a hard disk. It's part of the CHS (Cylinder-Head-Sector) addressing scheme used in older HDD geometry."
+  },
+  {
+    "id": 12,
+    "type": "mcq",
+    "question": "An HDD records data by magnetizing a thin film of which material on a disk?",
+    "options": ["Ferromagnetic", "Electromagnetic", "Electronic", "Electrostatic"],
+    "answer": "Ferromagnetic",
+    "explanation": "HDDs store data by magnetically aligning particles in a thin ferromagnetic coating on disk platters. The read/write head changes the magnetic orientation of these particles to represent binary data."
+  },
+  {
+    "id": 13,
+    "type": "mcq",
+    "question": "The space between the end of a logical record/file content and the physical end of the allocated block is called:",
+    "options": ["Slack space", "Swap space", "Unallocated gap", "Sector margin"],
+    "answer": "Slack space",
+    "explanation": "Slack space is the leftover unused space at the end of the last cluster allocated to a file. It can contain remnants of previously deleted data, making it forensically significant."
+  },
+  {
+    "id": 14,
+    "type": "mcq",
+    "question": "What is the process of trying to recover deleted files without relying on file system metadata?",
+    "options": ["File carving", "Partitioning", "Formatting", "Disk wiping"],
+    "answer": "File carving",
+    "explanation": "File carving scans raw disk data for known file signatures (headers/footers) to reconstruct files, bypassing the file system entirely — useful when the file system is damaged or deleted."
+  },
+  {
+    "id": 15,
+    "type": "mcq",
+    "question": "Software that is directly programmed into Electrically Erasable Programmable Read-Only Memory (EEPROM) is known as:",
+    "options": ["Firmware", "Malware", "BIOS Bootloader", "Kernel Drivers"],
+    "answer": "Firmware",
+    "explanation": "Firmware is low-level software embedded in hardware components (like BIOS/UEFI chips). It's stored on EEPROM so it persists without power and controls basic hardware functionality."
+  },
+  {
+    "id": 16,
+    "type": "mcq",
+    "question": "Which Windows registry hive/file stores local user account credentials and security hashes?",
+    "options": ["Security Account Manager (SAM)", "SYSTEM hive", "SOFTWARE hive", "NTUSER.DAT"],
+    "answer": "Security Account Manager (SAM)",
+    "explanation": "The SAM (Security Account Manager) database stores hashed passwords and account info for local Windows users. It's locked while Windows is running and is a prime forensic target."
+  },
+  {
+    "id": 17,
+    "type": "mcq",
+    "question": "An event viewer application uses which function to open the event log for an event source in Windows API?",
+    "options": ["OpenEventLog", "ReportEvent", "ProScript", "ReadEventLog"],
+    "answer": "OpenEventLog",
+    "explanation": "The Windows API function OpenEventLog() opens a handle to an event log, which is then used to read or query log entries. ReportEvent() is used for writing to logs."
+  },
+  {
+    "id": 18,
+    "type": "tf",
+    "question": "Non-wrapping can occur when an event log is created or when the event log is cleared.",
+    "options": ["True", "False"],
+    "answer": "True",
+    "explanation": "In Windows, non-wrapping mode prevents old log entries from being overwritten. This state is triggered when the log is first created or manually cleared, resetting the log's circular buffer behavior."
+  },
+  {
+    "id": 19,
+    "type": "tf",
+    "question": "Open Web Analytics is written in PHP and typically utilizes a MySQL database.",
+    "options": ["True", "False"],
+    "answer": "True",
+    "explanation": "Open Web Analytics (OWA) is an open-source web analytics platform built with PHP and MySQL, making it self-hostable and forensically inspectable through its database records."
+  },
+  {
+    "id": 20,
+    "type": "tf",
+    "question": "Office Password Recovery Toolbox is software which stores lost passwords to any Microsoft Office document effectively.",
+    "options": ["True", "False"],
+    "answer": "False",
+    "explanation": "Office Password Recovery Toolbox recovers (cracks or retrieves) lost passwords from Microsoft Office documents — it doesn't 'store' them. It uses brute force, dictionary attacks, or key extraction techniques."
+  },
+  {
+    "id": 21,
+    "type": "mcq",
+    "question": "Which device is a networking component that connects devices together using packet switching to forward data to the specific destination device?",
+    "options": ["Network Switch", "HUB", "Repeater", "Modem"],
+    "answer": "Network Switch",
+    "explanation": "A network switch uses packet switching and MAC address tables to intelligently forward data only to the intended destination port, unlike a hub which broadcasts to all ports."
+  },
+  {
+    "id": 22,
+    "type": "mcq",
+    "question": "Modem, hub, bridge, or switches are classified under which category in data communication?",
+    "options": ["Data communication equipment", "Data terminal equipment", "Data transmission equipment", "Data formatting equipment"],
+    "answer": "Data communication equipment",
+    "explanation": "DCE (Data Communication Equipment) refers to network devices like modems, hubs, bridges, and switches that facilitate data transfer over communication links, as opposed to DTE (terminal equipment like computers)."
+  },
+  {
+    "id": 23,
+    "type": "mcq",
+    "question": "What mode allows a wireless network card to sniff all frames within a wireless channel without association?",
+    "options": ["Monitor mode", "Wired Mode", "WIDZ mode", "Promiscuous wired mode"],
+    "answer": "Monitor mode",
+    "explanation": "Monitor mode (RFMON) allows a wireless NIC to capture all packets on a channel without being associated with an access point — essential for wireless forensics and packet sniffing tools like Wireshark."
+  },
+  {
+    "id": 24,
+    "type": "mcq",
+    "question": "What is the act of searching for Wi-Fi wireless networks by a person in a moving vehicle using a computer or PDA?",
+    "options": ["Wardriving", "Spoofing", "Sniffing", "Pharming"],
+    "answer": "Wardriving",
+    "explanation": "Wardriving involves driving around with a Wi-Fi-enabled device to map or detect wireless networks. It can be used for legitimate surveys or maliciously to find unsecured networks."
+  },
+  {
+    "id": 25,
+    "type": "mcq",
+    "question": "The creation of email messages with a forged sender address is specifically known as:",
+    "options": ["Email spoofing", "Phishing", "Wardriving", "Spam"],
+    "answer": "Email spoofing",
+    "explanation": "Email spoofing falsifies the 'From' header to make an email appear to come from a trusted source. It's commonly used in phishing attacks and social engineering."
+  },
+  {
+    "id": 26,
+    "type": "mcq",
+    "question": "Where a lower privilege user or application accesses functions reserved for higher privilege roles, it is called:",
+    "options": ["Vertical privilege escalation", "Horizontal privilege escalation", "Neutral privilege escalation", "Lateral movement"],
+    "answer": "Vertical privilege escalation",
+    "explanation": "Vertical privilege escalation means gaining higher-level permissions than assigned (e.g., a normal user gaining admin rights). Horizontal escalation is accessing another user's data at the same privilege level."
+  },
+  {
+    "id": 27,
+    "type": "mcq",
+    "question": "Which cyberattack is intended to redirect a website's traffic to another fake site by installing a malicious program or altering DNS configurations?",
+    "options": ["Pharming", "Spear phishing", "Whaling attack", "Account Take Over"],
+    "answer": "Pharming",
+    "explanation": "Pharming attacks corrupt DNS settings or host files to redirect users to fraudulent websites without their knowledge, even if they type the correct URL — more dangerous than phishing as it's harder to detect."
+  },
+  {
+    "id": 28,
+    "type": "mcq",
+    "question": "A simple protocol used for fetching e-mail from a mailbox server down to a local client is:",
+    "options": ["POP3", "SMTP", "CIMP", "HTTP Transfer"],
+    "answer": "POP3",
+    "explanation": "POP3 (Post Office Protocol v3) downloads emails from a server to a local client and typically deletes them from the server. SMTP is for sending emails, while IMAP keeps emails on the server."
+  },
+  {
+    "id": 29,
+    "type": "mcq",
+    "question": "Bluetooth 4.0 is also frequently referred to as:",
+    "options": ["Bluetooth Low Energy", "Wi-Fi Direct", "CDMA Mobile", "IDEN Network"],
+    "answer": "Bluetooth Low Energy",
+    "explanation": "Bluetooth 4.0 introduced Bluetooth Low Energy (BLE/Bluetooth Smart), designed for IoT and wearables that require minimal power consumption while maintaining wireless connectivity."
+  },
+  {
+    "id": 30,
+    "type": "tf",
+    "question": "Bluetooth is defined as being a long-range radio wireless technology.",
+    "options": ["True", "False"],
+    "answer": "False",
+    "explanation": "Bluetooth is a short-range wireless technology, typically operating within 10 meters (Class 2) to 100 meters (Class 1) at most. It's designed for personal area networks (PANs), not long-range communication."
+  },
+  {
+    "id": 31,
+    "type": "tf",
+    "question": "Devices such as cameras are not treated as storage devices in much the same way as USB drives during forensic inspection.",
+    "options": ["True", "False"],
+    "answer": "False",
+    "explanation": "Cameras and similar devices ARE treated as storage devices during forensic examination — they contain memory cards or internal storage holding photos, videos, and metadata that constitute digital evidence."
+  },
+  {
+    "id": 32,
+    "type": "mcq",
+    "question": "An e-mail address is structurally made up of how many parts separated by the standard character delimiter?",
+    "options": ["Two parts", "Three parts", "Single part", "Four parts"],
+    "answer": "Two parts",
+    "explanation": "An email address has two parts: the local part (username) and the domain part (e.g., user@domain.com). These two parts are separated by the '@' symbol."
+  },
+  {
+    "id": 33,
+    "type": "mcq",
+    "question": "E-mail addresses separate the user-name from the ISP domain using which symbol?",
+    "options": ["@", "&", "$", "%"],
+    "answer": "@",
+    "explanation": "The '@' (at) symbol is the universal delimiter in email addresses, separating the local username (left side) from the domain name (right side), as defined in RFC 5321."
+  },
+  {
+    "id": 34,
+    "type": "tf",
+    "question": "Network isolation for a captured mobile device is advisable either through placing the device in Airplane Mode or cloning its SIM card.",
+    "options": ["True", "False"],
+    "answer": "True",
+    "explanation": "Isolating a mobile device prevents remote wiping, data tampering, or new data from overwriting evidence. Airplane mode cuts all wireless signals; SIM cloning allows call interception without network contact."
+  },
+  {
+    "id": 35,
+    "type": "mcq",
+    "question": "SMTP is a simple protocol operating on top of which transport layer protocol?",
+    "options": ["TCP protocol", "UDP protocol", "IP protocol", "DNS protocol"],
+    "answer": "TCP protocol",
+    "explanation": "SMTP operates over TCP (typically port 25, 465, or 587) because email delivery requires reliable, ordered data transmission — TCP's connection-oriented nature guarantees this unlike UDP."
+  },
+  {
+    "id": 36,
+    "type": "mcq",
+    "question": "SMTP stands for which of the following protocols?",
+    "options": ["Simple Mail Transfer Protocol", "Short Mail Transmission Protocol", "Server Mail Transfer Protocol", "Small Mail Transmission Protocol"],
+    "answer": "Simple Mail Transfer Protocol",
+    "explanation": "SMTP (Simple Mail Transfer Protocol) is the standard protocol for sending and relaying email across the internet between mail servers, defined in RFC 5321."
+  },
+  {
+    "id": 37,
+    "type": "mcq",
+    "question": "Which specialized shielding item works to keep external signals from reaching a mobile device and prevents it from transmitting data outward?",
+    "options": ["Faraday bags", "Windsor bags", "Tesla enclosures", "Turing sleeves"],
+    "answer": "Faraday bags",
+    "explanation": "Faraday bags use a metallic mesh to block all electromagnetic signals (cellular, Wi-Fi, Bluetooth, GPS). They're standard forensic equipment to isolate mobile devices and prevent evidence tampering."
+  },
+  {
+    "id": 38,
+    "type": "mcq",
+    "question": "The retrieval of material from a device for analysis while keeping its integrity intact for court admissibility is called:",
+    "options": ["Acquisition", "Celldek tracking", "Interception", "Decryption"],
+    "answer": "Acquisition",
+    "explanation": "Forensic acquisition is the process of creating a verified, bit-for-bit copy of digital evidence while preserving its integrity (using write blockers and hash verification) for court-admissible analysis."
+  },
+  {
+    "id": 39,
+    "type": "mcq",
+    "question": "IMEI in mobile communications stands for:",
+    "options": ["International Mobile Equipment Identifier", "International Mobile Equipment Information", "International Mobile Educational Identity", "International Machine Equipment Identity"],
+    "answer": "International Mobile Equipment Identifier",
+    "explanation": "IMEI is a unique 15-digit number assigned to every mobile device, used to identify it on cellular networks. Forensically, it can track a device's history across different SIM cards and networks."
+  },
+  {
+    "id": 40,
+    "type": "mcq",
+    "question": "Which server program is basically responsible for the transfer of e-mail messages from one system to another across networks?",
+    "options": ["Mail Transfer Agent (MTA)", "Internet Mail Access Protocol (IMAP)", "Post Office Protocol (POP3)", "Mail Exchange (MX) record"],
+    "answer": "Mail Transfer Agent (MTA)",
+    "explanation": "An MTA (like Sendmail, Postfix, or Exchange) routes and delivers email between servers using SMTP. It's the 'postal worker' of email — receiving, routing, and forwarding messages to the correct destination."
+  },
+  {
+    "id": 41,
+    "type": "mcq",
+    "question": "IETF stands for which of the following standard organizations?",
+    "options": ["Internet Engineering Task Force", "International Engineering Task Force", "Internet Engineering Task Forum", "Interconnection Engineering Technical Forum"],
+    "answer": "Internet Engineering Task Force",
+    "explanation": "The IETF (Internet Engineering Task Force) is the body responsible for developing and promoting voluntary internet standards, including protocols like TCP/IP, HTTP, SMTP, and many others through RFC documents."
+  },
+  {
+    "id": 42,
+    "type": "mcq",
+    "question": "A printer spool is a temporary storage location based on which underlying data structure?",
+    "options": ["Queue", "List", "Set", "Stack"],
+    "answer": "Queue",
+    "explanation": "A print spooler uses a Queue (FIFO — First In, First Out) data structure. Print jobs are added to the back of the queue and processed in order from the front, ensuring fair sequential printing."
+  },
+  {
+    "id": 43,
+    "type": "mcq",
+    "question": "Which section of the Indian IT Act gives authorized officials the power of interception, monitoring, or decryption of any information through any computer resource?",
+    "options": ["Section 69", "Section 68", "Section 61", "Section 70"],
+    "answer": "Section 69",
+    "explanation": "Section 69 of India's Information Technology Act, 2000 empowers government authorities to intercept, monitor, or decrypt digital information for reasons including national security, public order, or investigation of crimes."
+  },
+  {
+    "id": 44,
+    "type": "mcq",
+    "question": "The concept that states organizations like ISPs should treat all data on the internet equally is known as:",
+    "options": ["Net neutrality", "Proponent stance", "Open Interconnect", "Misrepresentation policy"],
+    "answer": "Net neutrality",
+    "explanation": "Net neutrality is the principle that ISPs must treat all internet traffic equally — not blocking, throttling, or creating paid 'fast lanes' for certain content. It's a major policy debate in digital governance."
+  }
+]

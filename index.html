@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Digital Forensics Quiz</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --border: #2e3350;
+      --accent: #6c63ff;
+      --accent2: #8b5cf6;
+      --green: #22c55e;
+      --red: #ef4444;
+      --yellow: #f59e0b;
+      --text: #e2e8f0;
+      --text2: #94a3b8;
+      --radius: 14px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      text-align: center;
+      margin-bottom: 28px;
+      max-width: 780px;
+      width: 100%;
+    }
+    .header h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #6c63ff, #a78bfa, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 6px;
+    }
+    .header p { color: var(--text2); font-size: .92rem; }
+
+    /* ── PROGRESS ── */
+    .progress-wrap {
+      max-width: 780px;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: .82rem;
+      color: var(--text2);
+      margin-bottom: 8px;
+    }
+    .progress-bar-bg {
+      height: 8px;
+      background: var(--surface2);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), #38bdf8);
+      border-radius: 99px;
+      transition: width .4s ease;
+    }
+
+    /* ── SCOREBOARD ── */
+    .scoreboard {
+      display: flex;
+      gap: 12px;
+      max-width: 780px;
+      width: 100%;
+      margin-bottom: 22px;
+    }
+    .score-pill {
+      flex: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      text-align: center;
+    }
+    .score-pill .val {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    .score-pill .lbl { font-size: .72rem; color: var(--text2); margin-top: 2px; }
+    .score-pill.correct .val { color: var(--green); }
+    .score-pill.wrong .val  { color: var(--red); }
+    .score-pill.skip .val   { color: var(--yellow); }
+    .score-pill.total .val  { color: var(--accent); }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      max-width: 780px;
+      width: 100%;
+      animation: fadeIn .3s ease;
+    }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+
+    .q-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .q-num {
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(108,99,255,.15);
+      border: 1px solid rgba(108,99,255,.3);
+      border-radius: 6px;
+      padding: 3px 10px;
+    }
+    .q-type {
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--text2);
+      background: var(--surface2);
+      border-radius: 6px;
+      padding: 3px 8px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    .question {
+      font-size: 1.08rem;
+      font-weight: 600;
+      line-height: 1.6;
+      margin-bottom: 22px;
+      color: var(--text);
+    }
+
+    /* ── OPTIONS ── */
+    .options { display: flex; flex-direction: column; gap: 10px; }
+
+    .option-btn {
+      background: var(--surface2);
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 18px;
+      color: var(--text);
+      font-size: .95rem;
+      cursor: pointer;
+      text-align: left;
+      transition: all .18s;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+    }
+    .option-btn:hover:not(:disabled) {
+      border-color: var(--accent);
+      background: rgba(108,99,255,.1);
+    }
+    .option-letter {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .8rem; font-weight: 700;
+      flex-shrink: 0;
+      transition: all .18s;
+    }
+    .option-btn:hover:not(:disabled) .option-letter {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .option-btn.correct {
+      border-color: var(--green);
+      background: rgba(34,197,94,.1);
+    }
+    .option-btn.correct .option-letter { background: var(--green); color: #fff; }
+
+    .option-btn.wrong {
+      border-color: var(--red);
+      background: rgba(239,68,68,.1);
+    }
+    .option-btn.wrong .option-letter { background: var(--red); color: #fff; }
+
+    .option-btn:disabled { cursor: default; }
+    .option-btn.correct:disabled, .option-btn.wrong:disabled { opacity: 1; }
+    .option-btn:disabled:not(.correct):not(.wrong) { opacity: .45; }
+
+    .option-icon {
+      margin-left: auto;
+      font-size: 1.1rem;
+    }
+
+    /* ── EXPLANATION ── */
+    .explanation {
+      margin-top: 18px;
+      padding: 14px 16px;
+      background: rgba(108,99,255,.08);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      font-size: .88rem;
+      line-height: 1.65;
+      color: var(--text2);
+      animation: fadeIn .3s ease;
+    }
+    .explanation strong { color: var(--text); }
+
+    /* ── NAV BUTTONS ── */
+    .nav {
+      display: flex;
+      gap: 12px;
+      margin-top: 22px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 10px 22px;
+      border-radius: 8px;
+      border: none;
+      font-size: .9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .18s;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+    .btn-ghost {
+      background: var(--surface2);
+      color: var(--text2);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { color: var(--text); border-color: var(--accent); }
+    .btn:disabled { opacity: .4; cursor: default; transform: none !important; }
+
+    /* ── RESULT SCREEN ── */
+    .result-screen {
+      max-width: 780px;
+      width: 100%;
+      text-align: center;
+      animation: fadeIn .4s ease;
+    }
+    .result-trophy { font-size: 5rem; margin-bottom: 16px; }
+    .result-title {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #6c63ff, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+    .result-sub { color: var(--text2); margin-bottom: 28px; }
+
+    .result-big-score {
+      font-size: 3.5rem;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+    .result-pct { font-size: 1.1rem; color: var(--text2); margin-bottom: 28px; }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .result-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+    .result-card .val { font-size: 2rem; font-weight: 800; }
+    .result-card .lbl { font-size: .78rem; color: var(--text2); margin-top: 4px; }
+    .result-card.c .val { color: var(--green); }
+    .result-card.w .val { color: var(--red); }
+    .result-card.s .val { color: var(--yellow); }
+
+    .grade-badge {
+      display: inline-block;
+      padding: 10px 28px;
+      border-radius: 99px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 28px;
+    }
+    .grade-A { background: rgba(34,197,94,.2); color: var(--green); border: 1px solid var(--green); }
+    .grade-B { background: rgba(59,130,246,.2); color: #60a5fa; border: 1px solid #60a5fa; }
+    .grade-C { background: rgba(245,158,11,.2); color: var(--yellow); border: 1px solid var(--yellow); }
+    .grade-F { background: rgba(239,68,68,.2); color: var(--red); border: 1px solid var(--red); }
+
+    /* ── START SCREEN ── */
+    .start-screen {
+      max-width: 560px;
+      width: 100%;
+      text-align: center;
+      animation: fadeIn .3s ease;
+    }
+    .start-screen h2 { font-size: 1.6rem; font-weight: 800; margin-bottom: 10px; }
+    .start-screen p { color: var(--text2); margin-bottom: 28px; line-height: 1.7; }
+    .start-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .info-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+    }
+    .info-card .ico { font-size: 1.6rem; margin-bottom: 6px; }
+    .info-card .info-label { font-size: .78rem; color: var(--text2); }
+    .info-card .info-val { font-size: 1rem; font-weight: 700; margin-top: 2px; }
+
+    /* responsive */
+    @media (max-width: 540px) {
+      .header h1 { font-size: 1.4rem; }
+      .scoreboard { flex-wrap: wrap; }
+      .result-grid { grid-template-columns: 1fr 1fr 1fr; }
+      .start-info { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🔍 Digital Forensics Quiz</h1>
+  <p>Master your knowledge with 44 unique questions across MCQ & True/False</p>
+</div>
+
+<div id="app"></div>
+
+<script>
+let questions = [];
+let current = 0;
+let answered = [];   // 'correct' | 'wrong' | null
+let score = { correct: 0, wrong: 0, skipped: 0 };
+let phase = 'start'; // 'start' | 'quiz' | 'result'
+
+// ── FETCH QUESTIONS ──
+async function loadQuestions() {
+  try {
+    const res = await fetch('questions.json');
+    questions = await res.json();
+    // shuffle
+    questions = questions.sort(() => Math.random() - 0.5);
+    answered = new Array(questions.length).fill(null);
+    render();
+  } catch(e) {
+    document.getElementById('app').innerHTML =
+      `<p style="color:var(--red);text-align:center">❌ Could not load questions.json — make sure both files are in the same folder.</p>`;
+  }
+}
+
+// ── RENDER DISPATCHER ──
+function render() {
+  const app = document.getElementById('app');
+  if (phase === 'start')  { app.innerHTML = renderStart(); return; }
+  if (phase === 'result') { app.innerHTML = renderResult(); return; }
+
+  // progress
+  const done = answered.filter(a => a !== null).length;
+  const pct  = Math.round((done / questions.length) * 100);
+
+  app.innerHTML = `
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span>Question ${current + 1} of ${questions.length}</span>
+        <span>${pct}% complete</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" style="width:${pct}%"></div>
+      </div>
+    </div>
+
+    <div class="scoreboard">
+      <div class="score-pill correct"><div class="val">${score.correct}</div><div class="lbl">✅ Correct</div></div>
+      <div class="score-pill wrong">  <div class="val">${score.wrong}</div>  <div class="lbl">❌ Wrong</div></div>
+      <div class="score-pill skip">   <div class="val">${score.skipped}</div><div class="lbl">⏭ Skipped</div></div>
+      <div class="score-pill total">  <div class="val">${questions.length}</div><div class="lbl">📋 Total</div></div>
+    </div>
+
+    ${renderQuestion()}
+  `;
+
+  bindOptionClicks();
+}
+
+// ── START SCREEN ──
+function renderStart() {
+  return `
+  <div class="start-screen">
+    <div style="font-size:3.5rem;margin-bottom:16px">🔬</div>
+    <h2>Digital Forensics Master Quiz</h2>
+    <p>Test your knowledge of digital forensics concepts — from disk structures and network protocols to mobile forensics and legal frameworks.</p>
+    <div class="start-info">
+      <div class="info-card"><div class="ico">📝</div><div class="info-label">Questions</div><div class="info-val">44 Unique</div></div>
+      <div class="info-card"><div class="ico">🔀</div><div class="info-label">Order</div><div class="info-val">Randomized</div></div>
+      <div class="info-card"><div class="ico">💡</div><div class="info-label">Explanations</div><div class="info-val">After each answer</div></div>
+      <div class="info-card"><div class="ico">🏆</div><div class="info-label">Score</div><div class="info-val">Live tracking</div></div>
+    </div>
+    <button class="btn btn-primary" style="font-size:1rem;padding:13px 40px" onclick="startQuiz()">Start Quiz →</button>
+  </div>`;
+}
+
+// ── QUESTION CARD ──
+function renderQuestion() {
+  const q = questions[current];
+  const state = answered[current];
+  const letters = ['A','B','C','D'];
+
+  const optionsHTML = q.options.map((opt, i) => {
+    let cls = '';
+    let icon = '';
+    if (state !== null) {
+      if (opt === q.answer) { cls = 'correct'; icon = '<span class="option-icon">✅</span>'; }
+      else if (state === opt && opt !== q.answer) { cls = 'wrong'; icon = '<span class="option-icon">❌</span>'; }
+    }
+    return `
+    <button class="option-btn ${cls}" ${state !== null ? 'disabled' : ''} data-opt="${opt}">
+      <span class="option-letter">${letters[i]}</span>
+      <span>${opt}</span>
+      ${icon}
+    </button>`;
+  }).join('');
+
+  const explanationHTML = state !== null ? `
+    <div class="explanation">
+      <strong>💡 Explanation:</strong> ${q.explanation}
+    </div>` : '';
+
+  const isLast = current === questions.length - 1;
+
+  return `
+  <div class="card">
+    <div class="q-meta">
+      <span class="q-num">Q${current + 1}</span>
+      <span class="q-type">${q.type === 'tf' ? 'True / False' : 'Multiple Choice'}</span>
+    </div>
+    <div class="question">${q.question}</div>
+    <div class="options">${optionsHTML}</div>
+    ${explanationHTML}
+    <div class="nav">
+      <button class="btn btn-ghost" onclick="goTo(${current - 1})" ${current === 0 ? 'disabled' : ''}>← Prev</button>
+      ${state === null
+        ? `<button class="btn btn-ghost" onclick="skipQuestion()">Skip ⏭</button>`
+        : ''}
+      ${isLast
+        ? `<button class="btn btn-primary" onclick="showResult()">Finish & See Score 🏆</button>`
+        : `<button class="btn btn-primary" onclick="goTo(${current + 1})">Next →</button>`}
+    </div>
+  </div>`;
+}
+
+// ── RESULT SCREEN ──
+function renderResult() {
+  const total = questions.length;
+  const pct = Math.round((score.correct / total) * 100);
+  let grade, gradeClass, trophy, msg;
+
+  if (pct >= 85) { grade = 'A'; gradeClass = 'grade-A'; trophy = '🏆'; msg = 'Excellent! You\'re a Digital Forensics expert!'; }
+  else if (pct >= 70) { grade = 'B'; gradeClass = 'grade-B'; trophy = '🥈'; msg = 'Great job! Solid understanding of the concepts.'; }
+  else if (pct >= 55) { grade = 'C'; gradeClass = 'grade-C'; trophy = '📚'; msg = 'Good effort! Review the explanations and try again.'; }
+  else { grade = 'F'; gradeClass = 'grade-F'; trophy = '💪'; msg = 'Keep studying! Digital forensics takes practice.'; }
+
+  return `
+  <div class="result-screen">
+    <div class="result-trophy">${trophy}</div>
+    <div class="result-title">Quiz Complete!</div>
+    <div class="result-sub">${msg}</div>
+    <div class="result-big-score" style="color:${pct>=70?'var(--green)':pct>=55?'var(--yellow)':'var(--red)'}">${score.correct}/${total}</div>
+    <div class="result-pct">${pct}% Score</div>
+    <div class="grade-badge ${gradeClass}">Grade: ${grade}</div>
+    <div class="result-grid">
+      <div class="result-card c"><div class="val">${score.correct}</div><div class="lbl">✅ Correct</div></div>
+      <div class="result-card w"><div class="val">${score.wrong}</div><div class="lbl">❌ Wrong</div></div>
+      <div class="result-card s"><div class="val">${score.skipped}</div><div class="lbl">⏭ Skipped</div></div>
+    </div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="restartQuiz()">🔄 Restart Quiz</button>
+      <button class="btn btn-ghost" onclick="reviewQuiz()">📖 Review Answers</button>
+    </div>
+  </div>`;
+}
+
+// ── LOGIC ──
+function startQuiz() {
+  phase = 'quiz';
+  current = 0;
+  render();
+}
+
+function bindOptionClicks() {
+  document.querySelectorAll('.option-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (answered[current] !== null) return;
+      const chosen = btn.dataset.opt;
+      const correct = questions[current].answer;
+      answered[current] = chosen;
+      if (chosen === correct) score.correct++;
+      else score.wrong++;
+      render();
+    });
+  });
+}
+
+function skipQuestion() {
+  if (answered[current] === null) {
+    answered[current] = '__skipped__';
+    score.skipped++;
+  }
+  if (current < questions.length - 1) current++;
+  render();
+}
+
+function goTo(idx) {
+  if (idx < 0 || idx >= questions.length) return;
+  current = idx;
+  render();
+}
+
+function showResult() {
+  // count any remaining nulls as skipped
+  answered.forEach((a, i) => {
+    if (a === null) { answered[i] = '__skipped__'; score.skipped++; }
+  });
+  phase = 'result';
+  render();
+}
+
+function restartQuiz() {
+  current = 0;
+  score = { correct: 0, wrong: 0, skipped: 0 };
+  questions = questions.sort(() => Math.random() - 0.5);
+  answered = new Array(questions.length).fill(null);
+  phase = 'quiz';
+  render();
+}
+
+function reviewQuiz() {
+  current = 0;
+  phase = 'quiz';
+  render();
+}
+
+// ── BOOT ──
+loadQuestions();
+</script>
+</body>
+</html>
